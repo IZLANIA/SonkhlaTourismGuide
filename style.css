@@ -1,0 +1,406 @@
+/* ========================================
+   style.css - เว็บไซต์สงขลา (ทะเล + สถานที่ท่องเที่ยว)
+   รองรับ Light / Dark Mode
+   ======================================== */
+
+/* ---------- สีโหมดสว่าง (ค่าเริ่มต้น) ---------- */
+:root {
+    --brown: #6B4423;
+    --gold: #C9A962;
+    --sand: #F5EDE0;
+    --dark-text: #3F2A1E;
+    --light-sand: #FAF6F0;
+    --shadow: rgba(107, 68, 35, 0.15);
+    --teal-dark: #0f2c3e;
+    --teal: #1a3a4a;
+
+    /* สีโครงสร้างหน้า */
+    --bg-page: #f8f9fa;
+    --bg-card: #ffffff;
+    --bg-muted: #f8f5f0;
+    --bg-hero: #f8f5f0;
+    --text-main: #3F2A1E;
+    --text-muted: #6c757d;
+    --border-soft: #e8d9c2;
+    --border-list: #f0e6d8;
+    --footer-bg: #3F2A1E;
+    --footer-text: #ffffff;
+    --link-hover-bg: #FAF6F0;
+    --card-shadow-hover: rgba(107, 68, 35, 0.18);
+    --img-wrap-bg: #f8f5f0;
+}
+
+/* ---------- สีโหมดมืด (ตามระบบ OS) ---------- */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --brown: #D4A574;
+        --gold: #E0C078;
+        --sand: #2a241c;
+        --dark-text: #f0e6d8;
+        --light-sand: #3a3228;
+        --shadow: rgba(0, 0, 0, 0.45);
+        --teal-dark: #0a1a24;
+        --teal: #163040;
+
+        --bg-page: #12100e;
+        --bg-card: #1c1916;
+        --bg-muted: #24201b;
+        --bg-hero: #1a1714;
+        --text-main: #f0e6d8;
+        --text-muted: #b0a090;
+        --border-soft: #3d342a;
+        --border-list: #3d342a;
+        --footer-bg: #0d0b09;
+        --footer-text: #e8dcc8;
+        --link-hover-bg: #2a241c;
+        --card-shadow-hover: rgba(0, 0, 0, 0.5);
+        --img-wrap-bg: #1a1714;
+    }
+}
+
+/* ---------- บังคับโหมดมืดด้วย class (สำหรับปุ่มสลับในอนาคต) ---------- */
+html.dark-mode {
+    --brown: #D4A574;
+    --gold: #E0C078;
+    --sand: #2a241c;
+    --dark-text: #f0e6d8;
+    --light-sand: #3a3228;
+    --shadow: rgba(0, 0, 0, 0.45);
+    --teal-dark: #0a1a24;
+    --teal: #163040;
+
+    --bg-page: #12100e;
+    --bg-card: #1c1916;
+    --bg-muted: #24201b;
+    --bg-hero: #1a1714;
+    --text-main: #f0e6d8;
+    --text-muted: #b0a090;
+    --border-soft: #3d342a;
+    --border-list: #3d342a;
+    --footer-bg: #0d0b09;
+    --footer-text: #e8dcc8;
+    --link-hover-bg: #2a241c;
+    --card-shadow-hover: rgba(0, 0, 0, 0.5);
+    --img-wrap-bg: #1a1714;
+}
+
+/* บังคับโหมดสว่าง แม้ระบบจะเป็นมืด */
+html.light-mode {
+    --brown: #6B4423;
+    --gold: #C9A962;
+    --sand: #F5EDE0;
+    --dark-text: #3F2A1E;
+    --light-sand: #FAF6F0;
+    --shadow: rgba(107, 68, 35, 0.15);
+    --teal-dark: #0f2c3e;
+    --teal: #1a3a4a;
+
+    --bg-page: #f8f9fa;
+    --bg-card: #ffffff;
+    --bg-muted: #f8f5f0;
+    --bg-hero: #f8f5f0;
+    --text-main: #3F2A1E;
+    --text-muted: #6c757d;
+    --border-soft: #e8d9c2;
+    --border-list: #f0e6d8;
+    --footer-bg: #3F2A1E;
+    --footer-text: #ffffff;
+    --link-hover-bg: #FAF6F0;
+    --card-shadow-hover: rgba(107, 68, 35, 0.18);
+    --img-wrap-bg: #f8f5f0;
+}
+
+/* ---------- พื้นฐานหน้า ---------- */
+html {
+    color-scheme: light dark;
+}
+
+body {
+    background-color: var(--bg-page) !important;
+    color: var(--text-main);
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* แทน Bootstrap bg-light / bg-white ในโหมดมืด */
+body.bg-light {
+    background-color: var(--bg-page) !important;
+}
+
+.bg-white,
+.card,
+.method-card,
+.beach-card {
+    background-color: var(--bg-card) !important;
+    color: var(--text-main);
+}
+
+.text-muted,
+.lead.text-muted {
+    color: var(--text-muted) !important;
+}
+
+/* ---------- Hero Header + Image ---------- */
+.hero-header {
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--bg-hero);
+    box-shadow: 0 6px 20px var(--shadow);
+    position: relative;
+}
+
+.hero-image {
+    width: 100%;
+    height: auto;
+    max-height: 580px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.5s ease;
+}
+
+.hero-image:hover {
+    transform: scale(1.015);
+}
+
+/* ---------- Promotional Banner ---------- */
+.promo-banner {
+    background: linear-gradient(90deg, var(--teal-dark), var(--teal));
+    padding: 10px 0;
+    overflow: hidden;
+    border-top: 1px solid #2a4a5e;
+    border-bottom: 3px solid var(--gold);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    margin-top: 6px;
+    position: relative;
+    z-index: 10;
+}
+
+.scrolling-text {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    padding-left: 100%;
+    animation: scroll-left 22s linear infinite;
+    font-size: 1.08rem;
+    color: #f4e9d8;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.scrolling-text span {
+    flex-shrink: 0;
+}
+
+@keyframes scroll-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+}
+
+/* ---------- Navigation Cards ---------- */
+.nav-card {
+    transition: box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.25s ease;
+    border: 1px solid var(--border-soft);
+    border-radius: 14px;
+    overflow: hidden;
+    background-color: var(--bg-card);
+}
+
+.nav-card:hover {
+    box-shadow: 0 8px 20px var(--shadow);
+    border-color: var(--gold);
+}
+
+.nav-card .card-body {
+    padding: 2.25rem 1.75rem;
+}
+
+/* ---------- Place cards ---------- */
+.place-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: var(--bg-card);
+}
+
+.place-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 22px var(--card-shadow-hover) !important;
+}
+
+/* ---------- Menu Icon ---------- */
+.menu-icon {
+    max-width: 125px;
+    height: auto;
+    display: block;
+    margin: 0 auto 1.25rem;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.08));
+}
+
+.menu-icon:hover {
+    transform: scale(1.1);
+}
+
+/* ---------- Custom Text Colors ---------- */
+.text-brown {
+    color: var(--brown) !important;
+}
+
+.text-gold {
+    color: var(--gold) !important;
+}
+
+/* ---------- List Group in Sidebar ---------- */
+.list-group-item {
+    border-radius: 8px;
+    margin-bottom: 5px;
+    transition: all 0.25s ease;
+    font-weight: 500;
+    color: var(--dark-text);
+    border: 1px solid var(--border-list);
+    background-color: var(--bg-card);
+}
+
+.list-group-item:hover {
+    background-color: var(--link-hover-bg);
+    color: var(--brown);
+    transform: translateX(6px);
+    border-color: var(--gold);
+}
+
+.list-group-item-action:focus,
+.list-group-item-action:hover {
+    background-color: var(--link-hover-bg);
+    color: var(--brown);
+}
+
+/* ---------- Custom Brown Buttons ---------- */
+.btn-brown {
+    --bs-btn-color: var(--brown);
+    --bs-btn-border-color: var(--brown);
+    --bs-btn-hover-bg: var(--brown);
+    --bs-btn-hover-border-color: var(--brown);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-active-bg: #5a3820;
+    --bs-btn-active-border-color: #5a3820;
+    transition: all 0.3s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+    .btn-brown {
+        --bs-btn-hover-color: #1a1510;
+        --bs-btn-active-bg: #c49560;
+        --bs-btn-active-border-color: #c49560;
+    }
+}
+
+html.dark-mode .btn-brown {
+    --bs-btn-hover-color: #1a1510;
+    --bs-btn-active-bg: #c49560;
+    --bs-btn-active-border-color: #c49560;
+}
+
+html.light-mode .btn-brown {
+    --bs-btn-hover-color: #fff;
+    --bs-btn-active-bg: #5a3820;
+    --bs-btn-active-border-color: #5a3820;
+}
+
+.btn-brown:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px var(--shadow);
+}
+
+/* ---------- ภาพ responsive ในหน้าย่อย ---------- */
+.history-img-wrap,
+.beach-img-wrap,
+.travel-img-wrap,
+.locale-img-wrap {
+    background-color: var(--img-wrap-bg);
+    box-shadow: 0 6px 18px var(--shadow);
+}
+
+/* ---------- หัวข้อ / ลิงก์กลับ ในหน้าย่อย ---------- */
+.place-title {
+    color: var(--brown) !important;
+    border-bottom-color: var(--gold) !important;
+}
+
+.back-link {
+    color: var(--brown) !important;
+}
+
+.back-link:hover {
+    color: var(--gold) !important;
+}
+
+/* ---------- การ์ด / method / beach ในหน้าย่อย ---------- */
+.beach-card,
+.method-card {
+    border-color: var(--border-soft) !important;
+    background-color: var(--bg-card) !important;
+    color: var(--text-main);
+}
+
+.timeline-item {
+    border-left-color: var(--gold) !important;
+}
+
+/* Bootstrap card ในโหมดมืด */
+.card {
+    background-color: var(--bg-card);
+    border-color: var(--border-soft);
+    color: var(--text-main);
+}
+
+.card.border-0 {
+    border-color: transparent !important;
+}
+
+.alert-light {
+    background-color: var(--bg-muted);
+    border-color: var(--border-soft);
+    color: var(--text-main);
+}
+
+hr {
+    border-color: var(--border-soft);
+    opacity: 0.6;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 992px) {
+    .hero-image {
+        max-height: 450px;
+    }
+    .scrolling-text {
+        font-size: 1.05rem;
+    }
+    .nav-card .card-body {
+        padding: 1.75rem 1.25rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-image {
+        max-height: 340px;
+    }
+    .scrolling-text {
+        font-size: 0.95rem;
+    }
+    .promo-banner {
+        margin-top: 4px;
+    }
+}
+
+/* ---------- Footer ---------- */
+footer {
+    background-color: var(--footer-bg) !important;
+    color: var(--footer-text) !important;
+    margin-top: auto;
+}
+
+footer .opacity-75 {
+    color: var(--footer-text);
+}
